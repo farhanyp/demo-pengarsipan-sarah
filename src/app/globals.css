@@ -147,3 +147,49 @@ body {
 .input-glow:focus-within {
   box-shadow: 0 0 15px -3px rgba(106, 30, 85, 0.4);
 }
+
+/* Dashboard specific classes */
+.glass-card {
+  background: #251d21;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease;
+}
+.glass-card:hover {
+  border-color: #6a1e55;
+}
+
+.sidebar-expanded {
+  width: 280px;
+}
+.sidebar-collapsed {
+  width: 80px;
+}
+.main-expanded {
+  margin-left: 280px;
+}
+.main-collapsed {
+  margin-left: 80px;
+}
+.transition-all-custom {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hide-collapsed {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+.collapsed .hide-collapsed {
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  margin: 0;
+  overflow: hidden;
+}
+.collapsed .nav-item {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+.collapsed .profile-card {
+  padding: 8px;
+  justify-content: center;
+}
