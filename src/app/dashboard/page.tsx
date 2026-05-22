@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function DashboardPage() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [activeTab, setActiveTab] = useState('Dasbor');
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function DashboardPage() {
     { name: 'Dasbor', icon: 'dashboard', path: '/dashboard' },
     { name: 'Data Siswa', icon: 'group', path: '/data-siswa' },
     { name: 'Data Nilai Siswa', icon: 'grade', path: '/data-nilai-siswa' },
-    { name: 'Repositori Dokumen', icon: 'description', path: '#' },
+    { name: 'Repositori Dokumen', icon: 'description', path: '/repository' },
   ];
 
   return (

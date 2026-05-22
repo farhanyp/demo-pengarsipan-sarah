@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function DataNilaiSiswaPage() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   useEffect(() => {
     if (window.innerWidth < 768) {
@@ -16,7 +16,7 @@ export default function DataNilaiSiswaPage() {
     { name: 'Dasbor', icon: 'dashboard', path: '/dashboard' },
     { name: 'Data Siswa', icon: 'group', path: '/data-siswa' },
     { name: 'Data Nilai Siswa', icon: 'grade', path: '/data-nilai-siswa' },
-    { name: 'Repositori Dokumen', icon: 'description', path: '#' },
+    { name: 'Repositori Dokumen', icon: 'description', path: '/repository' },
   ];
 
   return (
@@ -102,7 +102,7 @@ export default function DataNilaiSiswaPage() {
         <header className="w-full px-4 md:px-margin-desktop py-4 md:py-6 sticky top-0 z-40 bg-surface/90 backdrop-blur-xl border-b border-outline-variant flex flex-col justify-center shadow-sm">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <button 
+              <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
                 className="md:hidden p-1.5 -ml-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors"
               >
@@ -159,17 +159,17 @@ export default function DataNilaiSiswaPage() {
 
           {/* Data Table Section */}
           <div className="glass-card rounded-xl border border-outline-variant flex flex-col overflow-hidden shadow-lg">
-            
+
             {/* Table Action Bar */}
             <div className="p-4 border-b border-outline-variant/50 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 bg-surface-container-low/30">
-              
+
               {/* Search */}
-              <div className="w-full flex-1 xl:max-w-xl relative group">
+              <div className="w-full flex-1 xl:max-w-2xl relative group">
                 <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors text-[20px]">search</span>
-                <input 
-                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container-low hover:bg-surface-container border border-outline-variant rounded-xl text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm md:font-body-md" 
-                  placeholder="Cari nama siswa atau mata pelajaran..." 
-                  type="text" 
+                <input
+                  className="w-full pl-10 pr-4 py-2.5 bg-surface-container-low hover:bg-surface-container border border-outline-variant rounded-xl text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-sm md:font-body-md"
+                  placeholder="Cari nama siswa atau mata pelajaran..."
+                  type="text"
                 />
               </div>
 
@@ -347,14 +347,542 @@ export default function DataNilaiSiswaPage() {
                       </div>
                     </td>
                   </tr>
+                  {/* Row 5 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">05</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold text-secondary">EF</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Eka Febrianti</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928105</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Biologi</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">88</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">85</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded font-bold text-body-md">86.5</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 6 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">06</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-[10px] font-bold text-tertiary">FA</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Fahri Akbar</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928106</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Sejarah</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">80</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">75</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded font-bold text-body-md">77.5</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 7 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">07</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-bold text-on-surface-variant">GM</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Gita Maharani</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928107</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Geografi</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">85</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">88</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-primary/10 text-primary border border-primary/20 rounded font-bold text-body-md">86.5</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 8 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">08</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-[10px] font-bold text-primary">HS</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Hendra Saputra</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928108</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Ekonomi</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">75</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">80</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded font-bold text-body-md">77.5</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 9 (Remedial) */}
+                  <tr className="hover:bg-error-container/10 bg-error/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">09</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold text-secondary">IN</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Intan Nuraini</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928109</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Matematika</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">65</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">50</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-error/10 text-error border border-error/20 rounded font-bold text-body-md">57.5</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 10 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">10</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-[10px] font-bold text-tertiary">JA</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Jamaludin Arif</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928110</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Bahasa Indonesia</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">88</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">90</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-primary/10 text-primary border border-primary/20 rounded font-bold text-body-md">89.0</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 11 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">11</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-bold text-on-surface-variant">KK</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Kurniawan Kusuma</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928111</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Fisika</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">76</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">82</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded font-bold text-body-md">79.0</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 12 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">12</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-[10px] font-bold text-primary">LM</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Lestari Mega</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928112</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Kimia</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">85</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">88</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-primary/10 text-primary border border-primary/20 rounded font-bold text-body-md">86.5</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 13 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">13</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold text-secondary">MS</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Maulana Syah</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928113</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Sejarah</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">90</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">85</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-primary/10 text-primary border border-primary/20 rounded font-bold text-body-md">87.5</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 14 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">14</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-[10px] font-bold text-tertiary">NP</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Nanda Putri</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928114</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Bahasa Inggris</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">95</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">98</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-primary/10 text-primary border border-primary/20 rounded font-bold text-body-md">96.5</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 15 (Remedial) */}
+                  <tr className="hover:bg-error-container/10 bg-error/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">15</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-bold text-on-surface-variant">OR</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Oki Ramadhan</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928115</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Fisika</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">60</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">58</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-error/10 text-error border border-error/20 rounded font-bold text-body-md">59.0</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 16 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">16</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-[10px] font-bold text-primary">PW</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Putri Wulandari</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928116</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Matematika</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">88</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">92</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-primary/10 text-primary border border-primary/20 rounded font-bold text-body-md">90.0</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 17 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">17</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold text-secondary">QA</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Qori Alfarizi</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928117</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Ekonomi</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">75</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">80</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded font-bold text-body-md">77.5</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 18 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">18</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-[10px] font-bold text-tertiary">RF</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Rizky Febrian</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928118</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Geografi</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">82</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">85</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded font-bold text-body-md">83.5</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 19 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">19</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-bold text-on-surface-variant">ST</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Siti Tarwiyah</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928119</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Bahasa Indonesia</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">88</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">90</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-primary/10 text-primary border border-primary/20 rounded font-bold text-body-md">89.0</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  {/* Row 20 */}
+                  <tr className="hover:bg-primary-container/5 transition-colors group">
+                    <td className="px-md py-md font-body-sm text-on-surface-variant">20</td>
+                    <td className="px-md py-md">
+                      <div className="flex items-center gap-sm">
+                        <div className="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-[10px] font-bold text-primary">TW</div>
+                        <div>
+                          <p className="font-body-md text-on-surface font-semibold">Tegar Wibowo</p>
+                          <p className="text-[11px] text-on-surface-variant">ID: 0045928120</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-md py-md font-body-sm text-on-surface">Matematika</td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">90</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="font-body-md text-on-surface font-bold">94</span>
+                    </td>
+                    <td className="px-md py-md text-center">
+                      <span className="px-sm py-1 bg-primary/10 text-primary border border-primary/20 rounded font-bold text-body-md">92.0</span>
+                    </td>
+                    <td className="px-md py-md text-right">
+                      <div className="flex items-center justify-end gap-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button className="p-xs hover:bg-primary-container/20 text-primary rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">edit</span>
+                        </button>
+                        <button className="p-xs hover:bg-error-container/20 text-error rounded transition-all">
+                          <span className="material-symbols-outlined text-[20px]">delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
-            
+
             {/* Pagination */}
             <div className="px-4 py-3 bg-surface-container-high/30 border-t border-outline-variant flex flex-col md:flex-row items-center justify-between gap-4">
               <p className="font-label-md text-label-md text-on-surface-variant text-center md:text-left">
-                Menampilkan <span className="text-on-surface font-bold">1-4</span> dari <span className="text-on-surface font-bold">1,240</span> entri nilai
+                Menampilkan <span className="text-on-surface font-bold">1-20</span> dari <span className="text-on-surface font-bold">1,240</span> entri nilai
               </p>
               <div className="flex items-center gap-1">
                 <button className="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded transition-all disabled:opacity-30" disabled>
@@ -368,7 +896,7 @@ export default function DataNilaiSiswaPage() {
                   <span className="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded-lg text-on-surface-variant text-label-md cursor-pointer transition-all">2</span>
                   <span className="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded-lg text-on-surface-variant text-label-md cursor-pointer transition-all">3</span>
                   <span className="w-8 h-8 flex items-center justify-center text-on-surface-variant text-label-md">...</span>
-                  <span className="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded-lg text-on-surface-variant text-label-md cursor-pointer transition-all">310</span>
+                  <span className="w-8 h-8 flex items-center justify-center hover:bg-surface-container-high rounded-lg text-on-surface-variant text-label-md cursor-pointer transition-all">62</span>
                 </div>
                 <button className="p-1 text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded transition-all">
                   <span className="material-symbols-outlined text-[20px]">chevron_right</span>
@@ -380,15 +908,6 @@ export default function DataNilaiSiswaPage() {
             </div>
           </div>
         </div>
-
-        {/* Footer Info */}
-        <footer className="mt-auto px-4 md:px-margin-desktop py-md border-t border-outline-variant/30 text-on-surface-variant opacity-50 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-label-md text-label-md text-center md:text-left">© 2024 ScholarSys Academic Systems. All Rights Reserved.</p>
-          <div className="flex gap-md">
-            <Link className="font-label-md text-label-md hover:text-primary transition-colors" href="#">Privacy Policy</Link>
-            <Link className="font-label-md text-label-md hover:text-primary transition-colors" href="#">Terms of Service</Link>
-          </div>
-        </footer>
       </main>
     </div>
   );

@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 export default function DataSiswaPage() {
   const router = useRouter();
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   useEffect(() => {
     if (window.innerWidth < 768) {
@@ -18,7 +18,7 @@ export default function DataSiswaPage() {
     { name: 'Dasbor', icon: 'dashboard', path: '/dashboard' },
     { name: 'Data Siswa', icon: 'group', path: '/data-siswa' },
     { name: 'Data Nilai Siswa', icon: 'grade', path: '/data-nilai-siswa' },
-    { name: 'Repositori Dokumen', icon: 'description', path: '#' },
+    { name: 'Repositori Dokumen', icon: 'description', path: '/repository' },
   ];
 
   return (
