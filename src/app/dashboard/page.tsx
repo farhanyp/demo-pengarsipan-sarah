@@ -1,21 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 export default function DashboardPage() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState('Dasbor');
 
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsCollapsed(true);
+    }
+  }, []);
+
   const navItems = [
-    { name: 'Dasbor', icon: 'dashboard' },
-    { name: 'Data Siswa', icon: 'group' },
-    { name: 'Data Nilai Siswa', icon: 'grade' },
-    { name: 'Repositori Dokumen', icon: 'description' },
+    { name: 'Dasbor', icon: 'dashboard', path: '/dashboard' },
+    { name: 'Data Siswa', icon: 'group', path: '/data-siswa' },
+    { name: 'Data Nilai Siswa', icon: 'grade', path: '/data-nilai-siswa' },
+    { name: 'Repositori Dokumen', icon: 'description', path: '#' },
   ];
 
   return (
     <div className="bg-background text-on-surface min-h-screen">
+      {/* Mobile Overlay */}
+      {!isCollapsed && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/50 z-[50] transition-opacity"
+          onClick={() => setIsCollapsed(true)}
+        />
+      )}
+
       {/* SideNavBar Shell */}
       <aside
         id="sidebar"
@@ -33,10 +47,10 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Sidebar Toggle Button */}
+        {/* Sidebar Toggle Button (Desktop Only) */}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute -right-3 top-20 bg-primary-container text-on-primary-container w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-[70]"
+          className="hidden md:flex absolute -right-3 top-20 bg-primary-container text-on-primary-container w-6 h-6 rounded-full border border-outline-variant items-center justify-center hover:scale-110 active:scale-95 transition-all z-[70]"
         >
           <span className="material-symbols-outlined text-[16px]">
             {isCollapsed ? 'chevron_right' : 'chevron_left'}
@@ -45,20 +59,19 @@ export default function DashboardPage() {
 
         <nav className="mt-lg flex-grow px-sm space-y-xs overflow-hidden">
           {navItems.map((item) => {
-            const isActive = activeTab === item.name;
+            const isActive = item.path === '/dashboard';
             return (
-              <button
+              <Link
                 key={item.name}
-                onClick={() => setActiveTab(item.name)}
-                className={`nav-item w-full flex items-center gap-base px-md py-sm transition-colors duration-200 ${
-                  isActive
-                    ? 'text-primary font-bold bg-primary-container/10 border-r-4 border-primary rounded-r-lg'
-                    : 'text-on-surface-variant hover:bg-surface-container-high rounded-lg'
-                }`}
+                href={item.path}
+                className={`nav-item w-full flex items-center gap-base px-md py-sm transition-colors duration-200 ${isActive
+                  ? 'text-primary font-bold bg-primary-container/10 border-r-4 border-primary rounded-r-lg'
+                  : 'text-on-surface-variant hover:bg-surface-container-high rounded-lg'
+                  }`}
               >
                 <span className="material-symbols-outlined shrink-0">{item.icon}</span>
                 <span className="font-body-md text-body-md hide-collapsed">{item.name}</span>
-              </button>
+              </Link>
             );
           })}
         </nav>
@@ -86,69 +99,34 @@ export default function DashboardPage() {
         id="mainContent"
         className={`transition-all-custom flex flex-col min-h-screen ${isCollapsed ? 'main-collapsed' : 'main-expanded'}`}
       >
+
         {/* TopNavBar Shell */}
-        <header className="flex justify-between items-center h-xl w-full px-margin-desktop sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant">
-          <div className="flex items-center gap-md flex-1">
-            <div className="relative w-full max-w-md">
-              <span className="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">
-                search
-              </span>
-              <input
-                className="w-full bg-surface-container-low border border-outline-variant rounded-full py-xs pl-lg pr-md text-body-sm focus:border-primary focus:ring-0 transition-all"
-                placeholder="Cari rekaman akademik..."
-                type="text"
-              />
-            </div>
-          </div>
-          <div className="flex items-center gap-md">
-            <div className="flex items-center gap-sm">
-              <button className="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95">
-                <span className="material-symbols-outlined">notifications</span>
+        <header className="w-full px-4 md:px-margin-desktop py-4 md:py-6 sticky top-0 z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant flex flex-col justify-center shadow-sm">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setIsCollapsed(!isCollapsed)}
+                className="md:hidden p-1.5 -ml-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors"
+              >
+                <span className="material-symbols-outlined text-[24px]">menu</span>
               </button>
-              <button className="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95">
-                <span className="material-symbols-outlined">settings</span>
-              </button>
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-on-surface tracking-tight">Dashboard Utama</h2>
+                <p className="text-xs md:text-sm text-on-surface-variant max-w-2xl mt-1">
+                  Pantau metrik akademik real-time dan ringkasan performa seluruh siswa.
+                </p>
+              </div>
             </div>
-            <div className="h-6 w-[1px] bg-outline-variant mx-sm"></div>
-            <button className="bg-primary-container text-on-primary-container px-md py-xs rounded-lg font-label-md hover:opacity-90 transition-all active:scale-95 flex items-center gap-xs">
-              <span className="material-symbols-outlined text-[18px]">download</span>
-              Unduh Laporan
-            </button>
           </div>
         </header>
 
         {/* Scrollable Dashboard Content */}
-        <div className="p-margin-desktop space-y-lg">
+        <div className="p-4 md:p-margin-desktop space-y-6 md:space-y-lg">
           {/* Welcome Header */}
-          <section className="flex flex-col md:flex-row md:items-end justify-between gap-md">
-            <div>
-              <h2 className="font-headline-xl text-headline-xl text-on-surface">Ringkasan Sistem</h2>
-              <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-xs">
-                Metrik institusi real-time dan ringkasan performa mahasiswa dari modul Data Siswa, Nilai, dan Dokumen.
-              </p>
-            </div>
-            <div className="flex items-center gap-sm bg-surface-container-high px-md py-sm rounded-xl border border-outline-variant">
-              <div className="flex -space-x-2">
-                <img
-                  alt="User 1"
-                  className="w-8 h-8 rounded-full border-2 border-surface-container-high"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwwOidm9qbGnDl6fH0Tv1mInq7iB7eG-b9db-gWp6FT7Hys4sivpa4Ns_WhqdEpNT_wWTvwA3EWM6zoRZH23qHwV4sYfpD7Bfg-yXv75Th45MQTXDjJKV5bKVG868kAI5GKqGCiuNDsRFlYWyN92v25dlXc1PmLB88Y7y7uEBHdBYYffXEFnQT4FvmFEaL-Nxxi1hgFN7E3qcq2Ff0P226HUJNidTLhC9Vg25qiNaPEvyUvP8TmXSIqUNBSbzDXGUJ44HGjyb5pdc"
-                />
-                <img
-                  alt="User 2"
-                  className="w-8 h-8 rounded-full border-2 border-surface-container-high"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy6OYSXMfOOg8REaqQaEeeBBnUlY_1RgwlCT_Z2Ea8_QYYEr9wTgf2VvPI1dRPkS9m9qGG2M_NPvV0edDP5ARE2h4uYy4_i9JZFGLCoYcoBEMyHdlXK9nIWTK8TyCkZ4jYnXZ1fQYikhgELs57bBS1jROERDekctpBaMD-Mn4I_kL-ZjCXkyrX4o6PAVFoDkzvk4OURKTgLr-AqYeYIx4ruegqseo_BuxR3Sf1VE8dYFdiyEZddcY84yTvKvoKScCE-1_dzUfRwTw"
-                />
-                <div className="w-8 h-8 rounded-full border-2 border-surface-container-high bg-primary-container flex items-center justify-center text-[10px] font-bold">
-                  +12
-                </div>
-              </div>
-              <span className="font-label-md text-label-md text-on-surface-variant">Staf Aktif</span>
-            </div>
-          </section>
+
 
           {/* Metrics Summary Cards */}
-          <section className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+          <section className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-gutter">
             {/* Total Siswa */}
             <div className="glass-card p-md rounded-xl flex flex-col justify-between h-[180px]">
               <div className="flex justify-between items-start">
@@ -171,8 +149,8 @@ export default function DashboardPage() {
                 <span className="text-xs font-bold text-secondary">Aman</span>
               </div>
               <div>
-                <p className="font-headline-xl text-headline-xl text-on-surface">3.82</p>
-                <p className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Rata-rata IPK</p>
+                <p className="font-headline-xl text-headline-xl text-on-surface">88.5</p>
+                <p className="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Rata-rata Nilai</p>
               </div>
             </div>
             {/* Total Dokumen */}
@@ -191,17 +169,17 @@ export default function DashboardPage() {
           </section>
 
           {/* Main Content Grid */}
-          <section className="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+          <section className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-gutter">
             {/* Performance Summary */}
             <div className="lg:col-span-8 glass-card p-md rounded-xl min-h-[400px] flex flex-col">
               <div className="flex items-center justify-between mb-lg">
                 <div>
-                  <h3 className="font-headline-sm text-headline-sm text-on-surface">Tren Performa Mahasiswa</h3>
+                  <h3 className="font-headline-sm text-headline-sm text-on-surface">Tren Performa Siswa</h3>
                   <p className="font-body-sm text-body-sm text-on-surface-variant">Ringkasan distribusi nilai dari modul Data Nilai Siswa.</p>
                 </div>
                 <div className="flex gap-base">
                   <button className="text-xs font-bold text-on-surface-variant border border-outline-variant px-sm py-1 rounded-full hover:bg-surface-container-high transition-colors">
-                    Fakultas
+                    Jurusan
                   </button>
                   <button className="text-xs font-bold text-primary border border-primary px-sm py-1 rounded-full bg-primary/5">
                     Semua
@@ -222,7 +200,7 @@ export default function DashboardPage() {
               <div className="grid grid-cols-3 gap-md pt-md border-t border-outline-variant">
                 <div>
                   <p className="text-[10px] uppercase text-on-surface-variant mb-xs">Performa Tertinggi</p>
-                  <p className="font-body-md text-body-md text-on-surface">Teknik Informatika</p>
+                  <p className="font-body-md text-body-md text-on-surface">MIPA</p>
                 </div>
                 <div>
                   <p className="text-[10px] uppercase text-on-surface-variant mb-xs">Pertumbuhan Avg.</p>
@@ -293,7 +271,7 @@ export default function DashboardPage() {
           {/* Bottom Table Section */}
           <section className="glass-card rounded-xl overflow-hidden">
             <div className="px-md py-sm border-b border-outline-variant flex items-center justify-between bg-surface-container-low">
-              <h3 className="font-headline-sm text-headline-sm text-on-surface">Mahasiswa Berprestasi</h3>
+              <h3 className="font-headline-sm text-headline-sm text-on-surface">Siswa Berprestasi</h3>
               <div className="flex items-center gap-sm">
                 <span className="text-label-md text-on-surface-variant">Pembaruan terakhir: 14:02 WIB</span>
                 <button className="p-xs hover:bg-surface-container-high rounded-full transition-all">
@@ -305,10 +283,10 @@ export default function DashboardPage() {
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-surface-container text-[10px] text-on-surface-variant/60 uppercase tracking-widest">
-                    <th className="px-md py-sm font-semibold">Nama Mahasiswa</th>
-                    <th className="px-md py-sm font-semibold">NIM</th>
-                    <th className="px-md py-sm font-semibold">Fakultas</th>
-                    <th className="px-md py-sm font-semibold">IPK</th>
+                    <th className="px-md py-sm font-semibold">Nama Siswa</th>
+                    <th className="px-md py-sm font-semibold">NISN</th>
+                    <th className="px-md py-sm font-semibold">Jurusan</th>
+                    <th className="px-md py-sm font-semibold">Nilai</th>
                     <th className="px-md py-sm font-semibold">Status</th>
                     <th className="px-md py-sm font-semibold text-right">Aksi</th>
                   </tr>
@@ -324,8 +302,8 @@ export default function DashboardPage() {
                       <span className="font-body-md text-body-md">Sarah Jenkins</span>
                     </td>
                     <td className="px-md py-sm font-body-sm text-on-surface-variant">#202400122</td>
-                    <td className="px-md py-sm font-body-sm">Data Science</td>
-                    <td className="px-md py-sm font-bold text-primary">3.98</td>
+                    <td className="px-md py-sm font-body-sm">MIPA</td>
+                    <td className="px-md py-sm font-bold text-primary">96.5</td>
                     <td className="px-md py-sm">
                       <span className="px-xs py-[2px] rounded bg-tertiary-container/20 text-tertiary text-[10px] font-bold uppercase">Honor Roll</span>
                     </td>
@@ -345,8 +323,8 @@ export default function DashboardPage() {
                       <span className="font-body-md text-body-md">Marco Verratti</span>
                     </td>
                     <td className="px-md py-sm font-body-sm text-on-surface-variant">#202400451</td>
-                    <td className="px-md py-sm font-body-sm">Cyber Security</td>
-                    <td className="px-md py-sm font-bold text-primary">3.92</td>
+                    <td className="px-md py-sm font-body-sm">IPS</td>
+                    <td className="px-md py-sm font-bold text-primary">94.2</td>
                     <td className="px-md py-sm">
                       <span className="px-xs py-[2px] rounded bg-tertiary-container/20 text-tertiary text-[10px] font-bold uppercase">Honor Roll</span>
                     </td>
@@ -366,8 +344,8 @@ export default function DashboardPage() {
                       <span className="font-body-md text-body-md">Elena Rodriguez</span>
                     </td>
                     <td className="px-md py-sm font-body-sm text-on-surface-variant">#202400982</td>
-                    <td className="px-md py-sm font-body-sm">Bio-Medical Eng.</td>
-                    <td className="px-md py-sm font-bold text-primary">3.88</td>
+                    <td className="px-md py-sm font-body-sm">MIPA</td>
+                    <td className="px-md py-sm font-bold text-primary">92.8</td>
                     <td className="px-md py-sm">
                       <span className="px-xs py-[2px] rounded bg-secondary-container/20 text-secondary text-[10px] font-bold uppercase">Distinction</span>
                     </td>
@@ -382,27 +360,7 @@ export default function DashboardPage() {
             </div>
           </section>
         </div>
-
-        {/* Sticky Status Footer */}
-        <footer className="mt-auto border-t border-outline-variant bg-surface px-margin-desktop py-sm flex justify-between items-center">
-          <div className="flex items-center gap-md">
-            <div className="flex items-center gap-xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_#ffaedf]"></span>
-              <span className="text-[10px] font-bold uppercase text-on-surface tracking-tighter">Status Sistem: Optimal</span>
-            </div>
-            <div className="h-3 w-[1px] bg-outline-variant"></div>
-            <p className="text-[10px] text-on-surface-variant">Respon Server: 24ms</p>
-          </div>
-          <div className="flex items-center gap-sm">
-            <span className="text-[10px] text-on-surface-variant font-bold">© 2024 ScholarSys Institutional Architecture</span>
-          </div>
-        </footer>
       </main>
-
-      {/* Floating Quick Action */}
-      <button className="fixed bottom-margin-desktop right-margin-desktop w-14 h-14 rounded-2xl bg-primary text-on-primary shadow-2xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-[100]">
-        <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>add</span>
-      </button>
     </div>
   );
 }

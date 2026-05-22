@@ -2,19 +2,17 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [buttonText, setButtonText] = useState('Login');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setButtonText('Welcome Back');
-      setLoading(false);
-    }, 1500);
+    router.push('/dashboard');
   };
 
   return (
@@ -70,18 +68,16 @@ export default function LoginPage() {
               <label className="text-[11px] md:font-body-sm md:text-body-sm text-on-surface-variant cursor-pointer" htmlFor="remember">Keep me logged in for research session</label>
             </div>
 
-            <button className={`w-full text-on-primary text-sm md:font-headline-sm md:text-headline-sm py-2 md:py-sm rounded-lg hover:brightness-110 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 md:gap-base shadow-lg font-semibold mt-2 md:mt-0 ${buttonText === 'Login' ? 'bg-primary-container' : 'bg-green-700'}`} type="submit" disabled={loading}>
+            <button className="w-full text-on-primary text-sm md:font-headline-sm md:text-headline-sm py-2 md:py-sm rounded-lg hover:brightness-110 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 md:gap-base shadow-lg font-semibold mt-2 md:mt-0 bg-primary-container" type="submit" disabled={loading}>
               {loading ? (
                 <>
                   <span className="material-symbols-outlined animate-spin">progress_activity</span> Authenticating...
                 </>
-              ) : buttonText === 'Login' ? (
+              ) : (
                 <>
                   Login
                   <span className="material-symbols-outlined">arrow_forward</span>
                 </>
-              ) : (
-                buttonText
               )}
             </button>
           </form>
